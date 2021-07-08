@@ -15,8 +15,8 @@ const ProductsOverviewScreen = props => {
 
     const selectItemHandler = (id, title) => {
         props.navigation.navigate('ProductDetail', { 
-            productId: itemData.item.id,
-            productTitle: itemData.item.title
+            productId: id,
+            productTitle: title
         });
 
     };
@@ -31,14 +31,14 @@ const ProductsOverviewScreen = props => {
                     title={itemData.item.title} 
                     price={itemData.item.price}
                     onSelect={() => {
-                        selectItemHandler(itemData.item.id, itemData.item, title);
+                        selectItemHandler(itemData.item.id, itemData.item.title);
                     }}
                 >
                     <Button 
                         color={Colors.primary} 
                         title="View Details" 
                         onPress={() => {
-                            selectItemHandler(itemData.item.id, itemData.item, title);
+                            selectItemHandler(itemData.item.id, itemData.item.title);
                         }} 
                     />
                     <Button 
