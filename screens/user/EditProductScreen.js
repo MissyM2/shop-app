@@ -4,7 +4,7 @@ import {
     ScrollView, 
     Text, TextInput, 
     StyleSheet, 
-    Platform 
+    Platform
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,6 +27,8 @@ const EditProductScreen = props => {
     const [description, setDescription] = useState(
         editedProduct ? editedProduct.description : '');
 
+
+
     const submitHandler = useCallback(() => {
         if (editedProduct) {
             dispatch(
@@ -37,6 +39,7 @@ const EditProductScreen = props => {
                 productsActions.createProduct(title, description, imageUrl, +price)
             );
         }
+        props.navigation.goBack();
     },[dispatch, prodId, title, description, imageUrl, price]);
 
     useEffect(() => {

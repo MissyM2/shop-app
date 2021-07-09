@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createStore, combineReducers } from 'redux';
+import { LogBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -10,6 +11,7 @@ import productsReducer from './store/reducers/products';
 import cartReducer from './store/reducers/cart';
 import ordersReducer from './store/reducers/orders';
 import ShopNavigator from './navigation/ShopNavigator';
+LogBox.ignoreAllLogs();
 
 const rootReducer = combineReducers({
   products: productsReducer,
