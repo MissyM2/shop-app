@@ -34,7 +34,19 @@ const ProductsOverviewScreen = props => {
             setError(err.message);
         }
         setIsLoading(false);
-    }, [dispatch,setIsLoading, setError]);
+    }, [dispatch, setIsLoading, setError]);
+
+    // drawer navigation is "capped" - it does not refetch from server
+    //  Adding a listener here, listens to any changes and triggers a refetch 
+    useEffect(() => {
+        const willFocusSubscription = props.navigation.addListener('willFocus', loadProducts);
+        
+        // this is a cleanup function that removes the listener after the component
+        // is destroyed.  We have not used a return with useEffect before but you can do it.
+        return () => {
+            willFocusSubscripton.remove();
+        };
+    }, [loadProducts]);
 
     useEffect(() => {
         loadProducts();   
