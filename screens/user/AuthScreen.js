@@ -45,7 +45,9 @@ const AuthScreen = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
     const [isSignup, setIsSignup] = useState(false);
+    let componentMounted = true;
     const dispatch = useDispatch();
+
 
     const [formState, dispatchFormState] = useReducer(formReducer, {
         inputValues: {
@@ -62,6 +64,9 @@ const AuthScreen = props => {
   useEffect(() => {
       if (error) {
           Alert.alert('An Error Occurred!', error, [{ text: 'Okay' }]);
+      }
+      return () => {
+        componentMounted = false;
       }
   }, [error]);
 

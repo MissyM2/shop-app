@@ -51,6 +51,7 @@ export const signup = (email, password) => {
       authenticate(
         resData.localId, 
         resData.idToken, 
+        // to test expiry date, put in 1000
         parseInt(resData.expiresIn) * 1000
       ) 
     );
@@ -124,7 +125,7 @@ const setLogoutTimer = expirationTime => {
       timer = setTimeout(() => {
         dispatch(logout());
       //}, expirationTime / 1000);  **  this is to test the auto logout when token expires
-    }, expirationTime / 1000);
+    }, expirationTime);
     };
 };
 
